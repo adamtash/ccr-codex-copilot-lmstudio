@@ -1,0 +1,7 @@
+.DS_Store
+*.bak
+logs/
+codex-headers.json
+config.json
+.copilot-tokens.json
+node_modules/

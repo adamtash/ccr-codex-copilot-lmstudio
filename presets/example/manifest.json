@@ -1,0 +1,101 @@
+{
+  "name": "ccr-example-preset",
+  "version": "1.0.0",
+  "description": "Example preset for Codex, Copilot, and LM Studio.",
+  "author": "your-name",
+  "keywords": [
+    "claude-code-router",
+    "codex",
+    "copilot",
+    "lm-studio"
+  ],
+  "LOG": true,
+  "LOG_LEVEL": "debug",
+  "CLAUDE_PATH": "",
+  "HOST": "127.0.0.1",
+  "PORT": 3456,
+  "APIKEY": "${CONFIG_APIKEY}",
+  "API_TIMEOUT_MS": "600000",
+  "PROXY_URL": "",
+  "transformers": [
+    {
+      "path": "${CCR_HOME}/plugins/copilot-transformer.js",
+      "options": {}
+    },
+    {
+      "name": "codex-transformer",
+      "path": "${CCR_HOME}/plugins/codex-transformer.js",
+      "options": {
+        "debug": false,
+        "reasoning": {
+          "enable": true,
+          "effort": "medium",
+          "summary": "detailed"
+        },
+        "headers_file": "${CCR_HOME}/codex-headers.json",
+        "strip_authorization": true
+      }
+    }
+  ],
+  "Providers": [
+    {
+      "name": "LM Studio",
+      "api_base_url": "http://localhost:1234/v1/chat/completions",
+      "api_key": "sk-local",
+      "models": [
+        "zai-org/glm-4.7-flash",
+        "minimax/minimax-m2"
+      ],
+      "transformer": {
+        "use": []
+      }
+    },
+    {
+      "name": "Copilot",
+      "api_base_url": "https://api.individual.githubcopilot.com/chat/completions",
+      "api_key": "populated-by-transformer",
+      "models": [
+        "gpt-5-mini",
+        "gpt-4.1"
+      ],
+      "transformer": {
+        "use": [
+          "copilot-transformer"
+        ]
+      }
+    },
+    {
+      "name": "Codex",
+      "api_base_url": "https://chatgpt.com/backend-api/codex/responses",
+      "api_key": "${CODEX_API_KEY}",
+      "models": [
+        "gpt-5.2-codex"
+      ],
+      "transformer": {
+        "use": [
+          "codex-transformer"
+        ]
+      }
+    }
+  ],
+  "StatusLine": {
+    "enabled": false,
+    "currentStyle": "default",
+    "default": {
+      "modules": []
+    },
+    "powerline": {
+      "modules": []
+    }
+  },
+  "Router": {
+    "default": "Codex,gpt-5.2-codex",
+    "background": "Codex,gpt-5.2-codex",
+    "think": "Codex,gpt-5.2-codex",
+    "longContext": "Codex,gpt-5.2-codex",
+    "longContextThreshold": 400000,
+    "webSearch": "Codex,gpt-5.2-codex",
+    "image": "Codex,gpt-5.2-codex"
+  },
+  "CUSTOM_ROUTER_PATH": ""
+}

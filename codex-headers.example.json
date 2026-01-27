@@ -1,0 +1,11 @@
+{
+  "version": "0.89.0",
+  "x-oai-web-search-eligible": "true",
+  "session_id": "119c0108-bbce-1482-8b07-5f7f9f6e8e2d",
+  "accept": "text/event-stream",
+  "authorization": "Bearer eyxxx",
+  "chatgpt-account-id": "119c0108-bbce-1482-8b07-5f7f9f6e8e2d",
+  "content-type": "application/json",
+  "user-agent": "codex_vscode/0.89.0 (Mac OS 26.2.0; arm64) unknown (VS Code; 0.5.67)",
+  "originator": "codex_vscode"
+}
