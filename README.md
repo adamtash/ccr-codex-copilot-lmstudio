@@ -4,6 +4,7 @@ Curated setup for **Claude Code Router** with example configurations for:
 - GitHub Copilot
 - OpenAI Codex (Responses API)
 - LM Studio (local OpenAI-compatible server)
+- Kilo Code (kilo.ai)
 
 ## What this is based on
 This setup follows the same routing + transformer model as the upstream **claude-code-router** project, where:
@@ -18,6 +19,7 @@ https://github.com/musistudio/claude-code-router
 - `presets/example/manifest.json` — preset template for quick switching.
 - `plugins/copilot-transformer.js` — Copilot header injector + token refresh.
 - `plugins/codex-transformer.js` — Chat Completions → Responses API conversion.
+- `plugins/kilo-transformer.js` — Kilo Code header injector and request transformer.
 - `codex-headers.example.json` — Codex auth header
 - `scripts/copilot-auth-simple.sh` — device-flow login + token cache helper.
 
@@ -46,6 +48,11 @@ https://github.com/musistudio/claude-code-router
   - Converts Chat Completions → Responses API format.
   - Merges headers from `codex-headers.json`.
   - Can enable reasoning via `options.reasoning`.
+- `kilo-transformer`:
+  - Adds Kilo Code-specific headers (e.g., `X-KiloCode-Version`, `X-KiloCode-TaskId`).
+  - Loads custom headers from an optional headers file.
+  - Strips Authorization header unless overridden (configurable via `strip_authorization`).
+  - Generates random task IDs for each request.
 
 ### 3) Codex headers
 `codex-headers.example.json` is a template.  

@@ -25,6 +25,15 @@
         "headers_file": "${CCR_HOME}/codex-headers.json",
         "strip_authorization": true
       }
+    },
+    {
+      "name": "kilo-transformer",
+      "path": "${CCR_HOME}/plugins/kilo-transformer.js",
+      "options": {
+        "debug": false,
+        "version": "5.1.0",
+        "strip_authorization": false
+      }
     }
   ],
   "Providers": [
@@ -64,6 +73,20 @@
       "transformer": {
         "use": [
           "codex-transformer"
+        ]
+      }
+    },
+    {
+      "name": "Kilo",
+      "api_base_url": "https://api.kilo.ai/api/openrouter/chat/completions",
+      "api_key": "${KILO_API_JWT}",
+      "models": [
+        "moonshotai/kimi-k2.5:free",
+        "moonshotai/kimi-k2.5"
+      ],
+      "transformer": {
+        "use": [
+          "kilo-transformer"
         ]
       }
     }
